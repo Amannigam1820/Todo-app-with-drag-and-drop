@@ -1,0 +1,90 @@
+// .card-container{
+//     background-color: aqua;
+//     display: flex;
+//     flex-direction: column;
+//     margin-top: 10px;
+
+//     .title{
+//         margin-right: 50px;
+        
+//     }
+// }
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+    
+  
+  
+  .title {
+    margin-bottom: 8px;
+  }
+  
+  .title h4 {
+    margin-right: 90%;
+    font-weight: bold;
+  }
+  
+  .desc {
+    margin-bottom: 16px;
+  }
+  
+  .desc h5 {
+    margin-right: 90%;
+    font-weight: 400;
+  }
+  
+  .cratedAt {
+    margin-bottom: 16px;
+  }
+  
+  .cratedAt h6 {
+    margin-right: 90%;
+    color: #666;
+  }
+
+  .button-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin-left: 30px;
+        
+
+        .del-btn{
+            margin-right: 7px;
+            padding: 5px;
+            background-color: rgb(244, 127, 127);
+            border: none;
+            width: 25%;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+        .edit-btn{
+            margin-right: 7px;
+            padding: 5px;
+            background-color: rgb(113, 113, 252);
+            border: none;
+            width: 20%;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+        .detail-btn{
+            padding: 5px;
+            background-color: rgb(113, 113, 252);
+            border: none;
+            width: 30%;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            
+        }
+    }
+    
+}

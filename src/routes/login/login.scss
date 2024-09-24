@@ -1,0 +1,65 @@
+.heading{
+    color: blue;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    margin-right: 400px;
+}
+.form-container {
+  margin-top: 10px;
+  border: 2px solid blue;
+  border-radius: 10px;
+  margin-top: 50px;
+  padding: 20px;
+  background-color: white;
+  width: 40%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .btn-login {
+    width: 100%; /* increase the width of the input fields */
+    height: 30px; /* increase the height of the input fields */
+    padding: 5px; /* add some padding to create space between the text and the border */
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: rgb(136, 136, 255);
+    border: none;
+  }
+  .btn-login:hover{
+    cursor: pointer;
+  }
+
+  .btn-reg {
+    color: rgb(136, 136, 255);
+  }
+  .ggl-btn {
+    padding: 5px;
+    background-color: rgb(136, 136, 255);
+    width: 40%;
+    height: 30px;
+    color: white;
+    border: none;
+    border-radius: 10%;
+
+}
+
+.ggl-btn:hover {
+    cursor: pointer; /* add this to change the cursor to a pointer on hover */
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    width: 100%; /* increase the width of the input fields */
+    height: 30px; /* increase the height of the input fields */
+    padding: 5px; /* add some padding to create space between the text and the border */
+    font-size: 16px;
+    margin-top: 10px;
+  }
+}

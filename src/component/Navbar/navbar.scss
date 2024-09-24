@@ -1,0 +1,41 @@
+nav {
+  display: flex;
+  padding: 7px;
+  //margin: 2px;
+  background-color: rgb(113, 113, 252);
+
+
+  .logdiv{
+    color:white;
+    margin: 6px;
+    padding: 5px;
+    border-radius: 10%;
+    
+    background-color: rgb(244, 127, 127);
+  }
+
+  .icn{
+    height: 35px;
+    width: 35px;
+  }
+
+  .left {
+    margin-right: auto;
+    
+  }
+
+  .right {
+    margin-left: auto; /* push the .left div to the left side */
+    display: flex; /* make the links inline */
+    justify-content: space-between; /* add space between the links */
+    margin-top: 6px;
+    & > a:not(:last-child) {
+      /* add margin to all links except the last one */
+      margin-right: 20px; /* adjust the margin value to your liking */
+    }
+    color: white;
+
+    
+    
+  }
+}

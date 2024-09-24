@@ -1,0 +1,25 @@
+.main {
+  position: relative;
+}
+
+.addtodo {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  
+}
+
+.add-todo {
+  padding: 7px;
+  width: 16%;
+  color: white;
+  background-color: rgb(113, 113, 252);
+  border: none;
+margin-right: 90%;
+  border-radius: 2px;
+}
+
+.searchBar {
+  /* add some styles to position the search bar below the button */
+  margin-top: 20px;
+  background-color: red;
+}
