@@ -1,77 +1,93 @@
-import React, { useState } from "react";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import "./todos.scss";
-import Card from "../Cards/Card";
-
-const initialData = {
-  todo: [1, 2, 3, 4, 5, 6],
-  inProgress: [],
-  done: [],
-};
+import React, { useState } from 'react';
+import Card from '../Cards/Card'; // Import the Card component
+import './todos.scss';
 
 const Todos = () => {
-  const [sections, setSections] = useState(initialData);
+  // Separate states for each section
+  const [todos, setTodos] = useState([
+    { id: 1, title: 'Card 1', description: 'This is card 1', createdAt: '12:23:44' },
+    { id: 2, title: 'Card 2', description: 'This is card 2', createdAt: '13:10:10' },
+  ]);
 
-  const onDragEnd = (result) => {
-    if (!result.destination) return;
+  const [inProgress, setInProgress] = useState([
+    // { id: 3, title: 'Card 3', description: 'This is card 3', createdAt: '14:11:22' },
+  ]);
 
-    const { source, destination } = result;
+  const [done, setDone] = useState([]);
 
-    if (source.droppableId === destination.droppableId) {
-      const newSection = Array.from(sections[source.droppableId]);
-      const [removed] = newSection.splice(source.index, 1);
-      newSection.splice(destination.index, 0, removed);
+  const [draggedCard, setDraggedCard] = useState(null); // Track dragged card info
 
-      setSections((prev) => ({
-        ...prev,
-        [source.droppableId]: newSection,
-      }));
-    } else {
-      const sourceSection = Array.from(sections[source.droppableId]);
-      const destSection = Array.from(sections[destination.droppableId]);
-      const [removed] = sourceSection.splice(source.index, 1);
-      destSection.splice(destination.index, 0, removed);
+  // Start dragging a card and save its info
+  const handleDragStart = (card, fromSection) => {
+    setDraggedCard({ card, fromSection });
+  };
 
-      setSections((prev) => ({
-        ...prev,
-        [source.droppableId]: sourceSection,
-        [destination.droppableId]: destSection,
-      }));
-    }
+  // Handle card dropping into different sections
+  const handleDrop = (toSection, setToSection) => {
+    if (!draggedCard) return;
+
+    const { card, fromSection } = draggedCard;
+
+    // Remove the card from the original section
+    fromSection((prevSection) => prevSection.filter((c) => c.id !== card.id));
+
+    // Add the card to the target section
+    setToSection((prevSection) => [...prevSection, card]);
+
+    // Clear dragged card after drop
+    setDraggedCard(null);
   };
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <div className="container">
-        {Object.keys(sections).map((section) => (
-          <Droppable key={section} droppableId={section}>
-            {(provided) => (
-              <div
-                className={`section ${section}`}
-                ref={provided.innerRef}
-                {...provided.droppableProps}
-              >
-                <h2 className={`${section}-box`}>{section.replace(/([A-Z])/g, ' $1')}</h2>
-                {sections[section].map((cardId, index) => (
-                  <Draggable key={cardId} draggableId={String(cardId)} index={index}>
-                    {(provided) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                      >
-                        <Card />
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
+    <div className="container">
+      {/* Todos Section */}
+      <section
+        className="section todos"
+        onDragOver={(e) => e.preventDefault()} // Allow dropping
+        onDrop={() => handleDrop(todos, setTodos)}
+      >
+        <h2>Todos</h2>
+        {todos.map(card => (
+          <Card
+            key={card.id}
+            cardData={card}
+            onDragStart={() => handleDragStart(card, setTodos)}
+          />
         ))}
-      </div>
-    </DragDropContext>
+      </section>
+
+      {/* In Progress Section */}
+      <section
+        className="section in-progress"
+        onDragOver={(e) => e.preventDefault()} // Allow dropping
+        onDrop={() => handleDrop(inProgress, setInProgress)}
+      >
+        <h2>In Progress</h2>
+        {inProgress.map(card => (
+          <Card
+            key={card.id}
+            cardData={card}
+            onDragStart={() => handleDragStart(card, setInProgress)}
+          />
+        ))}
+      </section>
+
+      {/* Done Section */}
+      <section
+        className="section done"
+        onDragOver={(e) => e.preventDefault()} // Allow dropping
+        onDrop={() => handleDrop(done, setDone)}
+      >
+        <h2>Done</h2>
+        {done.map(card => (
+          <Card
+            key={card.id}
+            cardData={card}
+            onDragStart={() => handleDragStart(card, setDone)}
+          />
+        ))}
+      </section>
+    </div>
   );
 };
 
